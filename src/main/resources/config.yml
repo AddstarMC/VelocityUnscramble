@@ -1,0 +1,47 @@
+# ==========================================================
+#  VelocityUnscramble
+#
+#  Comments in this file are yours to keep. The plugin never
+#  rewrites an existing config, so anything you add here
+#  survives restarts and reloads.
+#
+#  If an update adds a new option, the plugin logs a warning
+#  naming it and uses the default until you add it below.
+# ==========================================================
+
+# Enable debug logging.
+debug: false
+
+# The words every game draws from when no word is given.
+# You can have as many as you like and they may include spaces.
+random-words:
+- unscramble
+
+# Reveal the answer when nobody wins in time.
+display-answer-on-failed-games: true
+
+# Run games automatically on a timer. Timings live in auto.yml.
+auto-game-enabled: false
+
+# Every message players see now lives in messages.yml, including the one
+# telling them where to spend points (win.claim-hint there).
+
+# Points awarded per difficulty. Difficulty is the sum of Scrabble letter
+# values, discounted for common English and Minecraft words. A word scores
+# the points of the highest entry it reaches or exceeds.
+points-table:
+- difficulty: 0
+  points: 1
+- difficulty: 12
+  points: 2
+- difficulty: 23
+  points: 3
+- difficulty: 28
+  points: 4
+- difficulty: 33
+  points: 5
+
+# Database connection. MySQL.
+db-url: jdbc:mysql://localhost:3306/db_name
+db-username: user
+db-password: pass

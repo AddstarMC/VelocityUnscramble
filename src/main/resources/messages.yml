@@ -1,0 +1,159 @@
+# ==========================================================
+#  VelocityUnscramble - player-facing messages
+#
+#  Every message a player can see is listed here. Change any
+#  of them freely; the plugin never rewrites this file, so
+#  your edits and comments survive restarts and reloads.
+#
+#  If an update adds a new message, the plugin logs how many
+#  are missing and uses the built-in text for those until you
+#  add them below. Compare with the messages.yml inside the
+#  jar to see what is new.
+#
+#  FORMATTING
+#  Values are MiniMessage:
+#    <red>text</red>  <gold><bold>text  <#ff8800>hex colour
+#    <gradient:#ff0000:#0000ff>text</gradient>
+#    <hover:show_text:'tip'><click:run_command:'/us stats'>text
+#  Legacy & colour codes (&a, &l, &r) also still work, so
+#  configs carried over from BungeeUnscramble keep rendering.
+#
+#  CUSTOM FONT
+#  <font:addstarmc:mono> switches to the monospace font in our
+#  resource pack, used for the scrambled word and hints so the
+#  letters cannot be read from their spacing. Players without
+#  the pack just see the normal proportional font.
+#
+#  PLACEHOLDERS
+#  Each message lists the tags it understands, written like
+#  <word> or <player>. They are optional - drop one and it
+#  simply will not appear. Placeholder values are inserted as
+#  literal text, so a player name or a guessed word can never
+#  inject formatting of its own.
+#
+#  <prefix> works in every message and expands to the prefix
+#  set just below. Delete it from a message to have that one
+#  line render without the prefix.
+#
+#  Setting a message to an empty string ("") sends nothing.
+# ==========================================================
+
+# Prepended wherever <prefix> appears.
+prefix: "<green>[Unscramble]</green> "
+
+game:
+  # Announces a new game. The scrambled word follows on its own line, in
+  # game.start-word below. Placeholder: <word> (the scrambled word), if you
+  # would rather put it on this line instead.
+  start: "<prefix><yellow>New Game! Unscramble this:"
+
+  # The scrambled word, on its own line. Placeholder: <word>.
+  #
+  # <font:addstarmc:mono> is the custom monospace font from our resource pack.
+  # Every letter is the same width in it, so the word cannot be read from
+  # letter spacing and the hint asterisks line up underneath. Players without
+  # the pack fall back to the normal font and simply see proportional text.
+  start-word: "<light_purple><bold>></bold> <gold><font:addstarmc:mono><word>"
+
+  # Announces what the game is worth. Placeholders: <points>, and <plural>
+  # which is "s" unless exactly one point is at stake.
+  prize: "<prefix><yellow>The prize for winning is <gold><points> point<plural>"
+
+  # The periodic countdown. Placeholder: <time>, built from the time.* entries.
+  time-left: "<prefix><yellow><time>"
+
+  # A revealed hint. Placeholder: <hint> (the word with unrevealed letters
+  # shown as asterisks). Monospace so it lines up with the word above.
+  hint: "<prefix><yellow>Hint!... <gold><font:addstarmc:mono><hint>"
+
+  # Repeats the scrambled word after chat has scrolled it away.
+  # Placeholder: <word> (the scrambled word).
+  reminder: "<prefix><yellow>Again, the word was... <gold><font:addstarmc:mono><word>"
+
+  # Nobody guessed in time.
+  timed-out: "<prefix><yellow>Oh! Sorry, you didnt get the word in time!"
+
+  # The game was cancelled by an admin or by the proxy shutting down.
+  cancelled: "<prefix><yellow>Oh! Sorry, the game was cancelled."
+
+  # Reveals the answer after a game nobody won. Only sent when
+  # display-answer-on-failed-games is true in config.yml.
+  # Placeholder: <word> (the unscrambled answer).
+  answer-was: "<prefix><yellow>The answer was... <red><font:addstarmc:mono><word>"
+
+  # The warning before an automatic game. Placeholder: <seconds>.
+  starting-soon: "<prefix><yellow>A new game will start in <gold><seconds></gold> seconds!"
+
+# Pieces used to build the <time> placeholder in game.time-left.
+# Keep these plain: they are inserted into another message as text.
+time:
+  minute: "1 Minute"
+  minutes: "<count> Minutes"   # Placeholder: <count>
+  second: "1 Second"
+  seconds: "<count> Seconds"   # Placeholder: <count>
+  suffix: "<time> Left"        # Wraps the assembled time. Placeholder: <time>
+
+win:
+  # Announced network-wide when somebody wins. Placeholders: <player>,
+  # <word> (the answer), <points> (awarded), <duration> (seconds taken).
+  broadcast: "<prefix><yellow>Congratulations <aqua><player></aqua>!"
+
+  # Sent privately to the winner. Placeholders: <points> (their new balance),
+  # <awarded> (points from this win), <wins> (career wins),
+  # <total> (points earned all-time, before spending).
+  points: "<prefix><yellow>You now have <gold><points></gold> unscramble points."
+
+  # Reminder of where points are spent, shown to new winners and then
+  # every 25 points. Replaces claim-message from older versions.
+  claim-hint: "<prefix><light_purple>Use your points to get rewards at <aqua>/rewards"
+
+  # Shown alongside claim-hint.
+  stats-hint: "<prefix><light_purple>Type <aqua>/us stats</aqua> to view your unscramble stats."
+
+  # The database rejected the win.
+  save-failed: "<prefix><red>Your win could not be saved. Please notify an admin."
+
+  # A correct answer typed in shouting caps is not accepted.
+  too-many-caps: "<prefix><yellow>Answer rejected: <red>too many caps"
+
+stats:
+  # Placeholder: <player>.
+  header: "<prefix><yellow>Unscramble stats for <aqua><player></aqua>:"
+
+  # Placeholders: <player>, <wins>, <points> (spendable balance),
+  # <total> (earned all-time).
+  line: "<prefix><yellow>Wins: <gold><wins></gold>  Points: <gold><points></gold>  Total earned: <gold><total></gold>"
+
+  players-only: "<prefix><red>Only players have stats."
+  failed: "<prefix><red>Could not read your stats. Please try again later."
+
+command:
+  game-running: "<prefix><red>A game is already running."
+  no-game: "<prefix><red>There is no game running right now."
+  start-failed: "<prefix><red>Could not start the game. Check the console for details."
+  reloaded: "<prefix><green>Configuration reloaded."
+
+  # Placeholder: <message> (the error).
+  reload-failed: "<prefix><red>Reload failed: <message>"
+
+  # Placeholder: <state>, filled from debug-enabled or debug-disabled below.
+  debug-toggled: "<prefix><green>Debug mode is now <state>"
+  debug-enabled: "enabled"
+  debug-disabled: "disabled"
+
+  claim-retired: "<prefix><yellow>Prizes are now awarded automatically as points. Use <aqua>/us stats</aqua> to see your total."
+  guess-players-only: "<prefix><red>Only players can guess."
+
+# The /unscramble help screen. Lines are only sent to senders who hold the
+# matching permission. These carry no <prefix> by default.
+help:
+  header: "<dark_purple>=========<red> [ Unscramble Help ] <dark_purple>========="
+  help: "<red>/unscramble <gray>help <yellow>- Shows this screen"
+  stats: "<red>/unscramble <gray>stats <yellow>- Show your unscramble stats"
+  guess: "<red>/guess <gray><word> <yellow>- Submit an answer"
+  reload: "<red>/unscramble <gray>reload <yellow>- Reloads the config"
+  hint: "<red>/unscramble <gray>hint <yellow>- Gives a hint on the current word"
+  cancel: "<red>/unscramble <gray>cancel <yellow>- Cancels the running game"
+  newgame: "<red>/unscramble <gray>newgame [word] [time] [hint-interval] [hint-chars] <yellow>- Starts a new game"
+  newgame-note: "<green> Underscores (_) in the word become spaces"
+  footer: "<dark_purple>====================================="

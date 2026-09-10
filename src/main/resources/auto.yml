@@ -1,0 +1,32 @@
+# ==========================================================
+#  VelocityUnscramble - automatic game timings
+#
+#  Only used when auto-game-enabled is true in config.yml.
+#  Words come from random-words in config.yml.
+#
+#  Comments here are preserved; the plugin never rewrites
+#  an existing config file.
+# ==========================================================
+
+# The time between games in minutes. This includes the length
+# of the game, so it is the real interval.
+interval: 15
+
+# Randomly skews the interval by up to this many minutes either
+# way, so games do not start at predictable times.
+random-offset: 5
+
+# The length of the game in seconds.
+length: 30
+
+# The warning period (in seconds) given so people have time to get ready.
+warning-period: 3
+
+# The time between each hint given in seconds. 0 will disable hints.
+hint-interval: 12
+
+# The number of characters to reveal in each hint.
+hint-chars: 2
+
+# The minimum number of players online needed to run an automatic game.
+min-players: 3
